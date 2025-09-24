@@ -1,10 +1,10 @@
-all: pr1
+all: pr4
 
-pr1:
-	gcc -Wall -o pr1 pr1.c
+pr4:
+	gcc -Wall -o pr4 pr4.c -lcrypto && gcc -Wall -o pr4_p pr4_p.c -lcrypto -lpthread
 clean:
-	rm pr1
+	rm pr4 && rm pr4_p
 test:
-	./pr1 transactions.csv
+	time -p ./pr4_p transactions2.csv 8
 test_valgrind:
-	valgrind --leak-check=full ./pr1 transactions.csv
+	valgrind --leak-check=full ./pr4_p transactions2_short.csv 8
